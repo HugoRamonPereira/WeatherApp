@@ -4,10 +4,35 @@ infoTxt = inputPart.querySelector('.info-txt'),
 inputField = inputPart.querySelector('input'),
 locationBtn = inputPart.querySelector('button'),
 weatherIcon = wrapper.querySelector('.weather-part img'),
-returnArrow = wrapper.querySelector('header i')
-
+returnArrow = wrapper.querySelector('header i'),
+timeClock = document.querySelector('.currentTime')
 
 let api;
+
+function getDateTime() {
+  const currentTime = new Date(); 
+  const hour = currentTime.getHours();
+  const minute = currentTime.getMinutes();
+  const second = currentTime.getSeconds();
+
+  if(hour.toString().length == 1) {
+       hour = '0'+hour;
+  }
+  if(minute.toString().length == 1) {
+       minute = '0'+minute;
+  }
+  if(second.toString().length == 1) {
+       second = '0'+second;
+  }   
+  const dateTime = hour+':'+minute+':'+second;   
+   return dateTime;
+}
+
+// example usage: realtime clock
+setInterval(function(){
+  currentTime = getDateTime();
+  document.querySelector('timeClock').innerText = currentTime;
+}, 1000);
 
 inputField.addEventListener('keyup', e => {
   if (e.key == 'Enter' && inputField.value != '') {
@@ -41,7 +66,6 @@ function onSuccess(position) {
 function onError(error) {
   infoTxt.innerText = error.message
   infoTxt.classList.add('error')
-  console.log(error)
 }
 
 function requestApi(city) {
@@ -94,4 +118,6 @@ function weatherDetails(info) {
     console.log(info)
   }
 }
+
+
 

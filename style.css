@@ -121,10 +121,16 @@ header i {
 .weather-part .temp .numb .numb-2 {
     font-weight: 600;
 }
+.numb-2, .hum-percentage {
+    font-weight: 600;
+}
 .weather-part .temp .deg {
     font-size: 36px;
     margin: 10px 5px 0 0;
     display: block;
+    font-weight: 300;
+}
+.weather-part .temp .deg, .deg-2 {
     font-weight: 600;
 }
 .weather-part .weather {
